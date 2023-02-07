@@ -32,9 +32,9 @@ def make_dump(dbuser, dbpass, dblocation, dbname, backupdir):
 
 if __name__ == '__main__':
     args = get_args()
-    dbuser = args.user if args.user else "www-data"
+    dbuser = args.user if args.user else ""
     dbpass = args.password if args.password else ""
-    dblocation = args.host if args.host else ""
+    dblocation = args.host if args.host else "localhost"
     dbname = args.base if args.base else ""
     prefix = args.prefix if args.prefix else "/var/www/html"
     backupdir = args.directory if args.directory else prefix + "/backup"
