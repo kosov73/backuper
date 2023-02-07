@@ -19,7 +19,7 @@ def make_dump(dbuser, dbpass, dblocation, dbname, backupdir):
     size_command = "mysql -h {} -u {} -p{} --silent --skip-column-names -e \"SELECT ROUND(SUM(data_length) / 1024 / 1024 ,0) FROM information_schema.TABLES WHERE table_schema='{}';\"".format(dblocation, dbuser, dbpass, dbname)
     size = int(os.popen(size_command).read().strip())
 
-    dump_command = "mysqldump -h {} -u {} -p{} {} --single-transaction --ignore-table='{}.mivio_log' --ignore-table='{}.fiscalreg_atol_tasks' --ignore-table='{}.cbase_log' | gzip > {}.{}.{}.sql.gz".format(
+    dump_command = "mysqldump -h {} -u {} -p{} {} --single-transaction --ignore-table='{}.log' | gzip > {}.{}.{}.sql.gz".format(
         dblocation, dbuser, dbpass, dbname, dbname, dbname, dbname, hostname, dbname, now
     )
     subprocess.run(['bash', '-c', dump_command])
